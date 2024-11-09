@@ -1,0 +1,225 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* 수직 중앙 정렬 */
+    height: 100vh; /* 전체 화면 높이 설정 */
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    position: relative; /* 상대 위치 설정 */
+}
+
+.header {
+    margin: 20px 0;
+}
+
+.circle-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 600px;
+    position: relative; /* 위치 설정 */
+    z-index: 0; /* 카드 아래에 위치 */
+}
+
+.circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    margin: 5px;
+    background-color: transparent; /* 기본 색상 */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* 숫자 중앙 정렬 */
+    transition: background-color 0.3s;
+}
+
+.filled {
+    background-color: #007bff; /* 채워진 동그라미 색상 */
+}
+
+.animate-fill {
+    animation: fillAnimation 0.5s forwards; /* 애니메이션 적용 */
+}
+
+@keyframes fillAnimation {
+    0% {
+        background-color: transparent;
+    }
+    100% {
+        background-color: #007bff; /* 애니메이션 완료 시 색상 */
+    }
+}
+
+
+.card-container {
+    perspective: 1000px;
+    position: absolute; /* 절대 위치 설정 */
+    top: 50%; /* 수직 중앙 정렬 */
+    left: 50%; /* 수평 중앙 정렬 */
+    transform: translate(-50%, -50%); /* 중앙 정렬 */
+    z-index: 1; /* 카드가 다른 요소 위에 표시되도록 설정 */
+}
+
+.card {
+    width: 310px;
+    height: 520px;
+    position: relative; /* 카드 내부에서의 위치 설정 */
+    transform-style: preserve-3d;
+    animation: rotateCard 1s forwards;
+}
+
+.close-btn {
+    position: absolute; /* 절대 위치 설정 */
+    top: 10px; /* 상단에서의 거리 */
+    right: 10px; /* 우측에서의 거리 */
+    width: 25px; /* 버튼 크기 */
+    height: 25px; /* 버튼 크기 */
+    border-radius: 50%; /* 동그란 모양 */
+    background-color: #7d7d7d; /* 빨간색 배경 (필요에 따라 변경) */
+    color: white; /* 글자 색 */
+    border: none; /* 기본 테두리 제거 */
+    font-size: 15px; /* 글자 크기 */
+    cursor: pointer; /* 커서 포인터 변경 */
+    display: flex; /* Flexbox로 가운데 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    justify-content: center; /* 가로 중앙 정렬 */
+}
+
+.close-btn:hover {
+    background-color: #2b2b2b; /* 호버 시 색상 변경 */
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: white; /* 카드 색상 */
+    border: 1px solid #ccc;
+    border-radius: 13px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    backface-visibility: hidden;
+}
+
+.card-back {
+    transform: rotateY(180deg); /* 뒷면 회전 설정 */
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+@keyframes rotateCard {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(360deg);
+    }
+}
+
+
+.card-back {
+    transform: rotateY(180deg); /* 뒷면 회전 설정 */
+}
+
+@keyframes rotateCard {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(360deg);
+    }
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column; /* 세로 정렬 */
+    align-items: center; /* 가운데 정렬 */
+    margin-top: 5px; /* 버튼 그룹 위쪽 여백을 줄임 */
+}
+
+.share-btn {
+    margin-top: 0; /* 위쪽 여백 제거 */
+}
+
+#share-button {
+    background-color: #007bff; /* 파란색 배경 */
+    color: white; /* 글자 색 */
+    border: none; /* 테두리 제거 */
+    padding: 11px 20px; /* 패딩으로 박스 크기 조정 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    font-size: 13px; /* 글자 크기 */
+    cursor: pointer; /* 커서 포인터 변경 */
+    transition: background-color 0.3s; /* 호버 시 색상 변경 애니메이션 */
+}
+
+#share-button:hover {
+    background-color: #0056b3; /* 호버 시 어두운 파란색 */
+}
+
+
+@font-face {
+    font-family: 'Hakgyoansim Dunggeunmiso TTF B'; /* 폰트 이름 */
+    src: url('fonts/Hakgyoansim Dunggeunmiso TTF B.ttf') format('truetype'); /* 폰트 파일 경로 */
+}
+
+.card-front p {
+    font-family: 'Hakgyoansim Dunggeunmiso TTF B', sans-serif; /* 폰트 사용 */
+    text-align: center; /* 가운데 정렬 */
+    font-size: 30px; /* 글자 크기 조정 */
+    color: #2f2f2f; /* 글자 색상 조정 */
+}
+
+.title {
+    font-family: 'Hakgyoansim Dunggeunmiso TTF B', sans-serif; /* 사용할 폰트 */
+    font-size: 40px; /* 원하는 크기로 조정 */
+    text-align: center; /* 가운데 정렬 */
+    color: #232323; /* 글자 색상 조정 */
+    margin-bottom: 45px; /* 아래쪽 여백 조정 */
+}
+
+.card img {
+    width: 100%; /* 카드의 너비에 맞추어 이미지의 너비를 100%로 설정 */
+    max-width: 100%;
+    height: 600px; /* 원하는 높이로 조정 (400px 예시) */
+    object-fit: cover; /* 비율 유지하며 중앙에 맞추기 */
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+.card-front h1 {
+    margin-top: 10px; /* 날짜를 위로 올리기 위한 음수 값 */
+    margin-bottom: -100px; /* 날짜와 이미지 간의 간격을 줄임 */
+}
+
+
+.success-message {
+    font-size: 15px; /* 원하는 크기로 조정 */
+    text-align: center; /* 가운데 정렬 */
+    margin-top: -100px; /* 이미지와 성공 메시지 간의 간격 조절 */
+    margin-bottom: 55px; /* 성공 메시지와 버튼 간의 간격 조절 */
+}
+
+.buttons {
+    display: flex;
+    justify-content: center; /* 버튼들을 가운데 정렬 */
+    margin-top: -40px; /* 버튼과 성공 메시지 간의 간격을 줄임 */
+}
+
+
+.date {
+    font-family: 'Hakgyoansim Dunggeunmiso TTF B', sans-serif; /* 사용할 폰트 */
+    font-size: 27px; /* 글자 크기 조정 */
+    text-align: center; /* 가운데 정렬 */
+    color: #2f2f2f; /* 글자 색상 조정 */
+    margin-bottom: 5px; /* 아래쪽 여백 추가 (필요한 경우) */
+}
